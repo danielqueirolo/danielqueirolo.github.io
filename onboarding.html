@@ -1,0 +1,310 @@
+<title>Adaptive Onboarding Case Study</title>
+<style>
+:root{
+  --paper:#faf6ee; --paper-raised:#ffffff; --ink:#211c14; --ink-soft:#5c5646; --ink-faint:#9b9481;
+  --line:#eae2d0; --accent:#f2a520; --accent-deep:#b9701a; --accent-tint:#fdf0d6;
+  --shadow:0 18px 40px -18px rgba(33,28,20,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#181410; --paper-raised:#221c15; --ink:#f5efe2; --ink-soft:#c9bea6; --ink-faint:#8a8070;
+    --line:#332b1f; --accent:#ffbb3d; --accent-deep:#ffd27a; --accent-tint:#2e2413;
+    --shadow:0 18px 40px -18px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#181410; --paper-raised:#221c15; --ink:#f5efe2; --ink-soft:#c9bea6; --ink-faint:#8a8070;
+  --line:#332b1f; --accent:#ffbb3d; --accent-deep:#ffd27a; --accent-tint:#2e2413;
+  --shadow:0 18px 40px -18px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;}
+body{background:var(--paper); color:var(--ink); font-family:'Mulish',system-ui,-apple-system,sans-serif; font-size:16.5px; line-height:1.65; -webkit-font-smoothing:antialiased;}
+img{max-width:100%; display:block;}
+h1,h2,h3{font-family:'Quicksand',system-ui,sans-serif; font-weight:600; text-wrap:balance; margin:0; color:var(--ink);}
+a{color:var(--accent-deep);}
+.wrap{max-width:1080px; margin:0 auto; padding-inline:20px;}
+.col{max-width:640px; margin:0 auto;}
+.eyebrow{font-family:'Quicksand',sans-serif; font-weight:700; font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-deep);}
+.story{font-family:'Fraunces',Georgia,serif; font-style:italic; font-weight:500;}
+
+nav{position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+.navrow{display:flex; align-items:center; justify-content:space-between; padding-block:14px;}
+.navbrand{display:flex; align-items:center; gap:10px;}
+.navbrand img{height:28px; width:auto;}
+.navlinks{display:flex; gap:26px; font-size:13.5px; font-weight:600; color:var(--ink-soft);}
+.navlinks a{color:inherit; text-decoration:none;}
+.navlinks a:hover{color:var(--accent-deep);}
+@media (max-width:620px){ .navlinks{display:none;} }
+
+.hero{padding-block:64px 40px;}
+.herogrid{display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:center;}
+@media (max-width:860px){ .herogrid{grid-template-columns:1fr;} }
+.hero h1{font-size:clamp(32px,4.8vw,50px); line-height:1.08;}
+.hero h1 em{font-family:'Fraunces',Georgia,serif; font-style:italic; font-weight:500; color:var(--accent-deep);}
+.hero p.lede{font-size:18.5px; color:var(--ink-soft); margin-top:20px; max-width:46ch;}
+.herobtns{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
+.btn{font-family:'Quicksand',sans-serif; font-weight:700; font-size:14.5px; padding:13px 24px; border-radius:999px; border:1.5px solid transparent; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px;}
+.btn-primary{background:var(--accent); color:#241a03;}
+.btn-primary:hover{background:var(--accent-deep); color:#241a03;}
+.btn-ghost{background:transparent; color:var(--ink); border-color:var(--line);}
+.btn-ghost:hover{border-color:var(--accent-deep); color:var(--accent-deep);}
+
+/* hero checklist illustration */
+.heroart{position:relative; border-radius:22px; overflow:hidden; box-shadow:var(--shadow); background:var(--paper-raised); border:1px solid var(--line); padding:26px 24px; aspect-ratio:4/5; display:flex; flex-direction:column; justify-content:center; gap:14px;}
+.heroart .htitle{font-family:'Quicksand',sans-serif; font-weight:700; font-size:13px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px;}
+.checkrow{display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:var(--paper);}
+.checkrow.done{opacity:.55;}
+.checkrow .dot{width:20px; height:20px; border-radius:50%; border:2px solid var(--accent); flex-shrink:0; display:flex; align-items:center; justify-content:center;}
+.checkrow.done .dot{background:var(--accent); color:#241a03; font-size:12px; font-weight:900;}
+.checkrow span{font-size:13.5px; font-weight:600;}
+
+section{padding-block:56px;}
+section.tight{padding-block:30px;}
+.divider{height:1px; background:var(--line); border:none; margin:0;}
+.section h2{font-size:clamp(26px,3.4vw,36px); line-height:1.15;}
+.section p{color:var(--ink-soft); margin-top:16px; font-size:17px;}
+.section p + p{margin-top:14px;}
+
+blockquote.pull{font-family:'Fraunces',Georgia,serif; font-style:italic; font-weight:500; font-size:clamp(22px,3vw,30px); line-height:1.4; color:var(--ink); border:none; margin:30px 0; padding:0; max-width:32ch;}
+blockquote.pull::before{content:'\201C'; color:var(--accent); font-size:1.2em;}
+
+.steps{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:36px;}
+@media (max-width:760px){ .steps{grid-template-columns:1fr;} }
+.step{background:var(--paper-raised); border:1px solid var(--line); border-radius:18px; padding:26px 22px;}
+.step .num{font-family:'Fraunces',Georgia,serif; font-style:italic; font-size:34px; color:var(--accent); line-height:1;}
+.step h3{font-size:18px; margin-top:14px;}
+.step p{font-size:14.5px; margin-top:8px; color:var(--ink-soft);}
+
+.showcase-strip{background:var(--accent-tint); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+.showrow{display:grid; grid-template-columns:.85fr 1.15fr; gap:52px; align-items:center; padding-block:52px;}
+.showrow.rev{grid-template-columns:1.15fr .85fr;}
+.showrow.rev .phonecol{order:2;}
+@media (max-width:760px){ .showrow, .showrow.rev{grid-template-columns:1fr;} .showrow.rev .phonecol{order:0;} }
+.phonecol{display:flex; justify-content:center;}
+.phone{width:240px; border-radius:32px; border:6px solid var(--ink); background:#fff; box-shadow:var(--shadow); overflow:hidden; aspect-ratio:390/700; display:flex; flex-direction:column;}
+.phonescreen{flex:1; display:flex; flex-direction:column; padding:20px 16px; gap:10px; background:#fff; color:#211c14;}
+.phonescreen .pstat{font-size:10px; color:#9b9481; text-align:right;}
+.phonescreen h4{font-family:'Quicksand',sans-serif; font-weight:700; font-size:16px; margin:4px 0 2px;}
+.phonescreen .psub{font-size:11px; color:#9b9481; margin-bottom:8px;}
+.pcard{border:1px solid #eae2d0; border-radius:10px; padding:10px 11px; display:flex; align-items:center; gap:9px; font-size:11.5px; font-weight:600;}
+.pcard .pdot{width:16px; height:16px; border-radius:50%; border:2px solid #f2a520; flex-shrink:0;}
+.pcard.pdone .pdot{background:#f2a520;}
+.pcard.pdone{opacity:.5;}
+.pbtn{margin-top:auto; background:#f2a520; color:#241a03; font-family:'Quicksand',sans-serif; font-weight:700; font-size:12px; text-align:center; padding:11px; border-radius:999px;}
+.pavatar{width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,#f2a520,#c9701a); flex-shrink:0;}
+.showtext .tag{display:inline-block; font-family:'Quicksand',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-deep); background:var(--paper-raised); border:1px solid var(--line); padding:5px 11px; border-radius:999px;}
+.showtext h3{font-size:24px; margin-top:14px;}
+.showtext p{color:var(--ink-soft); margin-top:12px; font-size:15.5px;}
+
+.tryit{background:var(--ink); color:var(--paper); border-radius:26px; padding:52px 40px; text-align:center;}
+.tryit .eyebrow{color:var(--accent);}
+.tryit h2{color:#fff; margin-top:12px;}
+.tryit p{color:#d9cfba; max-width:54ch; margin-inline:auto;}
+.tryit .note{font-size:13px; color:#b3a789; margin-top:18px;}
+
+.processlist{display:flex; flex-direction:column; gap:0; margin-top:30px;}
+.prow{display:grid; grid-template-columns:120px 1fr; gap:22px; padding-block:20px; border-top:1px solid var(--line);}
+.prow:last-child{border-bottom:1px solid var(--line);}
+.prow .plabel{font-family:'Quicksand',sans-serif; font-weight:700; font-size:13px; color:var(--ink-faint); letter-spacing:.04em; text-transform:uppercase;}
+.prow p{margin:0; color:var(--ink-soft); font-size:15.5px;}
+@media (max-width:560px){ .prow{grid-template-columns:1fr; gap:6px;} }
+
+footer{border-top:1px solid var(--line); padding-block:44px; margin-top:20px;}
+.footgrid{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
+.footbrand{display:flex; align-items:center; gap:10px;}
+.footbrand img{height:24px;}
+footer p{color:var(--ink-faint); font-size:13px; margin:0;}
+</style>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,400;1,500&family=Mulish:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap">
+
+<nav>
+  <div class="wrap navrow">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="navbrand"><img src="data:image/png;base64,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" alt="Dan Queirolo"></div></a>
+    <div class="navlinks">
+      <a href="index.html">← Portfolio</a>
+      <a href="#story">The story</a>
+      <a href="#product">The design</a>
+      <a href="#try">Prototype</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap herogrid">
+    <div>
+      <div class="eyebrow">Case Study &middot; Service &amp; Product Design &middot; Ambev Tech</div>
+      <h1>Onboarding shouldn't feel like <em>figuring it out alone</em></h1>
+      <p class="lede">At Ambev Tech, new designers got a laptop, a dense wiki, and a "Buddy" who rarely had time. I designed a simple app to replace that with something that actually works &mdash; one task at a time.</p>
+      <div class="herobtns">
+        <a class="btn btn-primary" href="#try">Open the prototype</a>
+        <a class="btn btn-ghost" href="#story">Read the story ↓</a>
+      </div>
+    </div>
+    <div class="heroart">
+      <div class="htitle">First steps</div>
+      <div class="checkrow done"><div class="dot">✓</div><span>Meet your team</span></div>
+      <div class="checkrow done"><div class="dot">✓</div><span>Confirm your tool access</span></div>
+      <div class="checkrow"><div class="dot"></div><span>Read about our culture</span></div>
+      <div class="checkrow"><div class="dot"></div><span>Meet your Buddy</span></div>
+      <div class="checkrow"><div class="dot"></div><span>Book your first 1:1</span></div>
+    </div>
+  </div>
+</header>
+
+<hr class="divider">
+
+<section id="story" class="col">
+  <div class="eyebrow">Part One</div>
+  <h2 class="section">Everyone had a Buddy. Almost no one had a guide.</h2>
+  <p>I was the Design Lead for the Sales vertical at Ambev Tech, leading a team of twelve designers. On paper, every new hire got a "Buddy" &mdash; a colleague assigned to help them find their footing in their first weeks.</p>
+  <p>In practice, that person rarely had the bandwidth. The new hire was handed a laptop and, mostly, left to figure it out.</p>
+  <blockquote class="pull">There was a wiki. It lived inside Microsoft Teams, and it was dense enough that finding anything in it was its own onboarding task.</blockquote>
+  <p>I noticed this because I kept living it, over and over. Every time someone joined my team, I became the onboarding &mdash; walking each new designer through the same tools, the same context, the same culture, one conversation at a time.</p>
+</section>
+
+<section class="col">
+  <div class="eyebrow">Part Two</div>
+  <h2 class="section">From "just part of the job" to a design problem</h2>
+  <p>At some point I stopped treating this as something I just did and started treating it as something I could actually design. I talked to my own leadership and to the People &amp; Culture team to understand what information genuinely mattered in someone's first weeks.</p>
+  <p>Then I talked to my colleagues &mdash; the designers who had already lived through it &mdash; about what they wished they'd had on day one, and what had actually stuck with them.</p>
+  <p>A pattern showed up fast: nobody needed more information. They needed it broken into pieces they could act on, in an order that made sense, with a person attached to it instead of a folder.</p>
+</section>
+
+<hr class="divider">
+
+<section class="col">
+  <div class="eyebrow">The Idea</div>
+  <h2 class="section">A checklist, a Buddy, and a feedback loop</h2>
+  <p>What came out of those conversations was deliberately simple. The area manager builds a checklist for the new hire &mdash; meet the team, confirm access to every tool, read about the culture, meet your Buddy, book your first 1:1. The new hire checks tasks off as they go, so both sides can see exactly where things stand without a single status meeting.</p>
+  <p>At the two-week mark, the new hire writes a short retrospective on how onboarding actually went. That feedback goes straight back to the managers &mdash; so the process gets better with every person who goes through it, instead of staying frozen the way the old wiki was.</p>
+</section>
+
+<section class="wrap">
+  <div class="center" style="max-width:620px; margin-inline:auto; text-align:center;">
+    <div class="eyebrow">How it works</div>
+    <h2 class="section">Three simple moves</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="num">01</div><h3>Set the path</h3><p>The manager builds a checklist tailored to the role and the team &mdash; once, in minutes, instead of repeating it from memory each time someone joins.</p></div>
+    <div class="step"><div class="num">02</div><h3>Work through it</h3><p>The new hire moves through their own tasks at their own pace, always able to see what's done and what's left.</p></div>
+    <div class="step"><div class="num">03</div><h3>Reflect and improve</h3><p>A two-week retrospective turns one person's experience into a better process for the next person.</p></div>
+  </div>
+</section>
+
+<section id="product" class="showcase-strip">
+  <div class="wrap" style="padding-block:20px 0;">
+    <div class="eyebrow">Part Three</div>
+    <h2 class="section" style="max-width:640px;">Inside the design</h2>
+    <p style="max-width:640px; color:var(--ink-soft); margin-top:14px;">Four screens from the Figma prototype &mdash; recreated here to read clearly at a glance.</p>
+  </div>
+
+  <div class="wrap showrow">
+    <div class="showtext">
+      <span class="tag">Day one</span>
+      <h3>A checklist, not a wall of text</h3>
+      <p>"Primeiros passos" breaks the first weeks into named, checkable tasks &mdash; meet your team, set up access, learn the culture &mdash; instead of one long document nobody finishes.</p>
+    </div>
+    <div class="phonecol"><div class="phone"><div class="phonescreen">
+      <div class="pstat">9:41</div>
+      <h4>Primeiros passos</h4>
+      <div class="psub">First steps</div>
+      <div class="pcard pdone"><div class="pdot"></div>Conheça seu time</div>
+      <div class="pcard pdone"><div class="pdot"></div>Configure seus acessos</div>
+      <div class="pcard"><div class="pdot"></div>Leia sobre a cultura</div>
+      <div class="pcard"><div class="pdot"></div>Conheça seu Buddy</div>
+      <div class="pcard"><div class="pdot"></div>Agende sua 1&ordf; reuni&atilde;o</div>
+      <div class="pbtn">Marcar como feita</div>
+    </div></div></div>
+  </div>
+
+  <div class="wrap showrow rev">
+    <div class="showtext">
+      <span class="tag">The Buddy</span>
+      <h3>A real person, not a title on an org chart</h3>
+      <p>The Buddy screen turns an assigned name into an actual introduction &mdash; who they are, what they can help with, and one tap to say hello.</p>
+    </div>
+    <div class="phonecol"><div class="phone"><div class="phonescreen">
+      <div class="pstat">9:41</div>
+      <h4>BUDDY UP</h4>
+      <div class="psub">Fala, Mateus!</div>
+      <div style="display:flex; gap:10px; align-items:center; border:1px solid #eae2d0; border-radius:12px; padding:12px;">
+        <div class="pavatar"></div>
+        <div style="font-size:11.5px; color:#5c5646; line-height:1.4;">Seu Buddy nesta jornada &eacute; respons&aacute;vel por te ajudar nas primeiras semanas.</div>
+      </div>
+      <div class="pbtn" style="margin-top:14px;">Enviar mensagem</div>
+    </div></div></div>
+  </div>
+
+  <div class="wrap showrow">
+    <div class="showtext">
+      <span class="tag">Context</span>
+      <h3>Where you fit, spelled out</h3>
+      <p>A short "how we're structured" screen answers the question every new hire is too polite to ask twice: who does what, and who do I go to.</p>
+    </div>
+    <div class="phonecol"><div class="phone"><div class="phonescreen">
+      <div class="pstat">9:41</div>
+      <h4>FIRMA</h4>
+      <div class="psub">Estrutura de Design</div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:8px; justify-content:center;">
+        <div style="height:10px; background:#f4ecd8; border-radius:4px; width:88%;"></div>
+        <div style="height:10px; background:#f4ecd8; border-radius:4px; width:72%;"></div>
+        <div style="height:10px; background:#f4ecd8; border-radius:4px; width:94%;"></div>
+        <div style="height:10px; background:#f4ecd8; border-radius:4px; width:60%;"></div>
+      </div>
+      <div class="pbtn">Conhecer o time</div>
+    </div></div></div>
+  </div>
+
+  <div class="wrap showrow rev" style="padding-bottom:52px;">
+    <div class="showtext">
+      <span class="tag">Two weeks in</span>
+      <h3>Feedback that actually goes somewhere</h3>
+      <p>The retrospective closes the loop: how were your first weeks, really? &mdash; feeding straight back into how the next person's onboarding is built.</p>
+    </div>
+    <div class="phonecol"><div class="phone"><div class="phonescreen">
+      <div class="pstat">9:41</div>
+      <h4>Retrospectiva</h4>
+      <div class="psub">Como foram suas primeiras semanas?</div>
+      <div style="flex:1; border:1px solid #eae2d0; border-radius:10px; padding:10px; font-size:11px; color:#9b9481;">Escreva sobre suas primeiras impress&otilde;es...</div>
+      <div class="pbtn">Enviar resposta</div>
+    </div></div></div>
+  </div>
+</section>
+
+<section id="try" class="wrap tight">
+  <div class="tryit">
+    <div class="eyebrow">See the real thing</div>
+    <h2>This one's honestly unfinished &mdash; on purpose</h2>
+    <p>I sketched the flow on paper, moved it into Figma, and had the core screens prototyped when I left Ambev for a new chapter. Some screens are still stubs. I'm sharing it as it is, because this is what real design work looks like under a real constraint: time.</p>
+    <a class="btn btn-primary" style="margin-top:28px;" href="https://www.figma.com/proto/LANlHIqPkNLwLOqUdWtvXq/Onboarding-Designers-Ambev-Tech-Prototype-V1?node-id=17-968&starting-point-node-id=37%3A1389" target="_blank" rel="noopener">Open the Figma prototype ↗</a>
+    <p class="note">Opens in a new tab &middot; a few flows are incomplete, so some taps won't go anywhere yet.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="col">
+  <div class="eyebrow">Behind the design</div>
+  <h2 class="section">How this got made</h2>
+  <p>This one didn't start with a brief. It started with noticing the same problem happen to person after person, and deciding it was worth fixing even though nobody had assigned it to me.</p>
+  <div class="processlist">
+    <div class="prow"><div class="plabel">Research</div><p>Conversations with leadership and People &amp; Culture on what belongs in onboarding, plus one-on-ones with my own designers on what they actually needed in their first weeks.</p></div>
+    <div class="prow"><div class="plabel">Design</div><p>Paper wireframes first, then a Figma prototype &mdash; a task-based flow for the new hire, a setup flow for the manager, and a retrospective to close the loop.</p></div>
+    <div class="prow"><div class="plabel">Reality</div><p>I left Ambev before the prototype was complete. A handful of screens are still stubs &mdash; and that's part of the story, not something to hide.</p></div>
+  </div>
+</section>
+
+<section class="col">
+  <div class="eyebrow">Part Four</div>
+  <h2 class="section">Where I'd take it next: adaptive, not just simple</h2>
+  <p>The version I designed at Ambev was intentionally simple &mdash; the same checklist for every new hire, built once by a manager. That was the right first version. It's not the last one.</p>
+  <p>The direction I actually want to build toward is an onboarding that adapts itself &mdash; where tasks, pacing and even what the Buddy is nudged to check in on shift based on the person's role, team, and how they're actually progressing, not a fixed template. The retrospective data wouldn't just close one onboarding out; it would shape the next one automatically. That's the "adaptive" in the name &mdash; and it's the version I'd want AI doing quietly in the background, instead of a manager doing it by hand.</p>
+</section>
+
+<footer>
+  <div class="wrap footgrid">
+    <a href="index.html" style="text-decoration:none;color:inherit;"><div class="footbrand"><img src="data:image/png;base64,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" alt="Dan Queirolo"></div></a>
+    <p>Designed at Ambev Tech &middot; case study by Daniel Queirolo &middot; <a href="mailto:danqueirolo@gmail.com">danqueirolo@gmail.com</a></p>
+  </div>
+</footer>
