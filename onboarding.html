@@ -1,4 +1,4 @@
-<title>Adaptive Onboarding Case Study</title>
+<title>Ambev to Embarkei</title>
 <style>
 :root{
   --paper:#faf6ee; --paper-raised:#ffffff; --ink:#211c14; --ink-soft:#5c5646; --ink-faint:#9b9481;
@@ -109,6 +109,11 @@ blockquote.pull::before{content:'\201C'; color:var(--accent); font-size:1.2em;}
 .prow p{margin:0; color:var(--ink-soft); font-size:15.5px;}
 @media (max-width:560px){ .prow{grid-template-columns:1fr; gap:6px;} }
 
+.steps5{grid-template-columns:repeat(5,1fr); gap:16px;}
+.steps5 .step{padding:22px 18px;}
+.steps5 .step .num{font-size:22px;}
+@media (max-width:960px){ .steps5{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:560px){ .steps5{grid-template-columns:1fr;} }
 footer{border-top:1px solid var(--line); padding-block:44px; margin-top:20px;}
 .footgrid{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
 .footbrand{display:flex; align-items:center; gap:10px;}
@@ -126,6 +131,7 @@ footer p{color:var(--ink-faint); font-size:13px; margin:0;}
       <a href="#story">The story</a>
       <a href="#product">The design</a>
       <a href="#try">Prototype</a>
+      <a href="#embarkei">Embarkei</a>
     </div>
   </div>
 </nav>
@@ -133,11 +139,11 @@ footer p{color:var(--ink-faint); font-size:13px; margin:0;}
 <header class="hero">
   <div class="wrap herogrid">
     <div>
-      <div class="eyebrow">Case Study &middot; Service &amp; Product Design &middot; Ambev Tech</div>
+      <div class="eyebrow">Case Study &middot; Service &amp; Product Design &middot; Ambev Tech &rarr; Embarkei</div>
       <h1>Onboarding shouldn't feel like <em>figuring it out alone</em></h1>
-      <p class="lede">At Ambev Tech, new designers got a laptop, a dense wiki, and a "Buddy" who rarely had time. I designed a simple app to replace that with something that actually works &mdash; one task at a time.</p>
+      <p class="lede">At Ambev Tech, new designers got a laptop, a dense wiki, and a "Buddy" who rarely had time. I designed a simple app to replace that with something that actually works, one task at a time. Later, I built it for real: <strong>Embarkei</strong>, a live onboarding product.</p>
       <div class="herobtns">
-        <a class="btn btn-primary" href="#try">Open the prototype</a>
+        <a class="btn btn-primary" href="#embarkei">See how it became Embarkei</a>
         <a class="btn btn-ghost" href="#story">Read the story ↓</a>
       </div>
     </div>
@@ -274,7 +280,7 @@ footer p{color:var(--ink-faint); font-size:13px; margin:0;}
 
 <section id="try" class="wrap tight">
   <div class="tryit">
-    <div class="eyebrow">See the real thing</div>
+    <div class="eyebrow">The original prototype</div>
     <h2>This one's honestly unfinished &mdash; on purpose</h2>
     <p>I sketched the flow on paper, moved it into Figma, and had the core screens prototyped when I left Ambev for a new chapter. Some screens are still stubs. I'm sharing it as it is, because this is what real design work looks like under a real constraint: time.</p>
     <a class="btn btn-primary" style="margin-top:28px;" href="https://www.figma.com/proto/LANlHIqPkNLwLOqUdWtvXq/Onboarding-Designers-Ambev-Tech-Prototype-V1?node-id=17-968&starting-point-node-id=37%3A1389" target="_blank" rel="noopener">Open the Figma prototype ↗</a>
@@ -295,16 +301,61 @@ footer p{color:var(--ink-faint); font-size:13px; margin:0;}
   </div>
 </section>
 
-<section class="col">
+<section id="embarkei" class="col">
   <div class="eyebrow">Part Four</div>
-  <h2 class="section">Where I'd take it next: adaptive, not just simple</h2>
-  <p>The version I designed at Ambev was intentionally simple &mdash; the same checklist for every new hire, built once by a manager. That was the right first version. It's not the last one.</p>
-  <p>The direction I actually want to build toward is an onboarding that adapts itself &mdash; where tasks, pacing and even what the Buddy is nudged to check in on shift based on the person's role, team, and how they're actually progressing, not a fixed template. The retrospective data wouldn't just close one onboarding out; it would shape the next one automatically. That's the "adaptive" in the name &mdash; and it's the version I'd want AI doing quietly in the background, instead of a manager doing it by hand.</p>
+  <h2 class="section">Three years later, I built it for real</h2>
+  <p>The Ambev prototype stayed unfinished, but the problem didn't go away. Every company I talked to afterwards had some version of the same story: onboarding that ends on day one, a spreadsheet or a lost PDF, and a colleague who helps when they can.</p>
+  <p>So I took the original design and turned it into a working product. <strong>Embarkei</strong> is a live onboarding SaaS for Brazilian companies, designed and built end to end by me, with AI as my build partner.</p>
+  <blockquote class="pull">The prototype answered "what should a new hire see?" The product had to answer "what happens when many companies, their managers and real people's feedback all live in the same system?"</blockquote>
+  <div class="herobtns">
+    <a class="btn btn-primary" href="https://embarkei.com.br/" target="_blank" rel="noopener">See Embarkei live ↗</a>
+  </div>
 </section>
+
+<section class="wrap">
+  <div style="max-width:640px; margin-inline:auto; text-align:center;">
+    <div class="eyebrow">The product</div>
+    <h2 class="section">Five pieces, one journey</h2>
+    <p style="color:var(--ink-soft); margin-top:14px;">The three moves from Ambev (set the path, work through it, reflect) became five product components, each with a clear owner.</p>
+  </div>
+  <div class="steps steps5">
+    <div class="step"><div class="num">Carta</div><h3>The template</h3><p>A reusable set of tasks for the first 30, 60 or 90 days. Built once by the company, used for every new hire.</p></div>
+    <div class="step"><div class="num">Travessia</div><h3>The journey</h3><p>Each new hire's own path, started by email or link, with target dates counted in business days.</p></div>
+    <div class="step"><div class="num">Buddy</div><h3>The person</h3><p>A named colleague who follows the new hire's progress, so help is attached to a person instead of a folder.</p></div>
+    <div class="step"><div class="num">Diário</div><h3>The logbook</h3><p>An end-of-journey reflection on what worked and what didn't, which feeds the next version of the template.</p></div>
+    <div class="step"><div class="num">Ponte</div><h3>The bridge</h3><p>A manager dashboard that shows only the journeys that manager owns, with everything pending in one place.</p></div>
+  </div>
+</section>
+
+<section class="col">
+  <div class="eyebrow">Design decisions</div>
+  <h2 class="section">What changed from prototype to product</h2>
+  <p>Most of the real design work happened in the gap between a prototype that one team would use and a product that any company could trust.</p>
+  <div class="processlist">
+    <div class="prow"><div class="plabel">Honest feedback</div><p>The Buddy follows progress but <strong>cannot read the logbook</strong>. The retrospective often talks about the Buddy, so hiding it from them is what makes honest feedback possible.</p></div>
+    <div class="prow"><div class="plabel">Identified, not anonymous</div><p>Logbook entries are signed. Anonymous feedback is easier to give but impossible to act on, and the whole point of the loop is that a manager follows up.</p></div>
+    <div class="prow"><div class="plabel">Templates vs. journeys</div><p>A journey is a snapshot of the template at the moment it started. Managers can keep improving the template without breaking the path of someone who's already halfway through.</p></div>
+    <div class="prow"><div class="plabel">Business days</div><p>Target dates count working days, not calendar days, so a hire who starts on a Thursday isn't "late" by Monday.</p></div>
+    <div class="prow"><div class="plabel">Scoped views</div><p>Managers see only their own hires. Less noise for them, and less exposure of other teams' people.</p></div>
+    <div class="prow"><div class="plabel">Trust by default</div><p>Each company's data is isolated at the database level. For an HR product, that's not a feature to list, it's the price of entry.</p></div>
+  </div>
+</section>
+
+<section class="col">
+  <div class="eyebrow">Where it stands</div>
+  <h2 class="section">Live, pre-launch, and honest about it</h2>
+  <p>Embarkei is live and working, but it hasn't been commercially launched yet, so there are no usage numbers to show here. The next step is a small set of pilot companies, and I'll update this case with what they teach me.</p>
+  <p>Two things are on the roadmap, and both come straight from the original Ambev idea:</p>
+  <div class="processlist">
+    <div class="prow"><div class="plabel">Learning tracks</div><p>Personalized training tracks built into the same journey structure, starting with a sales onboarding track, so companies don't need a separate LMS for the first months.</p></div>
+    <div class="prow"><div class="plabel">Adaptive onboarding</div><p>The version I sketched at Ambev: tasks, pacing and Buddy check-ins that adjust to the person's role, team and progress, with logbook data shaping the next template automatically. That's the part I want AI doing quietly in the background, instead of a manager doing it by hand.</p></div>
+  </div>
+</section>
+
 
 <footer>
   <div class="wrap footgrid">
     <a href="index.html" style="text-decoration:none;color:inherit;"><div class="footbrand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAABLCAYAAABZeprtAAAACXBIWXMAAAsSAAALEgHS3X78AAAKfUlEQVR42u1dXagkRxX+6ppA1h/ibNSHiMbMVZBkVgN9yZt3VuiLEHzQlbkuIYqsYYaNQh5CmCEvKojeecjDPoUZQvAhXOHOZolC4sPtwG4eguK2QXdRJGwTIZoQJL1CJIEQy4epTjqd7q6frv6954OGhTu9daqrvqpzTtU5h3HOQSAQuo0N+gQEAhGdQCAQ0QkEAhGdQCA0AjfQJ7ALxliud5NzzugrEWhHJxAIRHQCgUBEJxAIRHQCgYhOIBCI6AQCoa244Y+PnXn8D7ff8+YLH/3y9Q7161f724OXaXgJBEH0G99564vfPf/A8I7hGTz9uW/j3xsf60K/LgKwQnTGWA/ACIALwAHQj/3ZAxAA8DjnK5sdYIyNRHuOaDuOQDw+AL+ktt1Y+xF88aw45x7Rp0VEj/5x4tITuOPYU3jh5I9w/tMufZn1hB8D2APQy/hJ9KHGjDGPc75joc0pgHFiQUmiLx5XvBMAmOURXuUij1jULue0HRF/zBjzAOxyzkOaKS2z0T/y1n/wtd/9Aj9/7iyGb1456iRfAFjkkPxDpBc7obHmwBi7LBaWvubrfQAHQuYi0GnbBXAoFgdCm4ge4RP//DtOXXgQD119FF965/WjSvKxIVFMzYPDhJpsgrHQQkxkcA367IjFkNBGokf4/J+ewdmnJ7j/H0/iU//771Eh+dSQ5DDYiSMsLJD8vcXGcJc1JeyIMdYnKrWY6JE6f+LSE3j42Qnuuf77rpO8r7gr+wBm4lkCCAu06WDt7MvDMtZeIPltT+H/ky1SPtaORtV+jYhKzYZy9NpNb/wL3/jtI9jadPCM8wD8m27v4veYKvxmxjmfJ8g6K6B6jzTbmzPGDiTvmWoHIdYONi+h4cgWP4eo1PIdPYlbrvn4/sEP8dDVRzulzseO0bRIDgDC87xruLPnHXEEae0BmJdkQuwmj81E+8uS2iM0lehx+/2Rp+7D9179TVe+hYt8D3uYN+E55wEAk/PsvN1wldGWXwLxvJyz8VWBPhDapLpn2e9bh+cwOL7CsyenuPTxE23+FjJyrBTOjFfQd+Tlnb0HJfUlleg5i5jHGOXLOLJEj9vvpy48iOGmg1/f/TBeuvEzbd3RUZB0vm6jeTfMxNl6pGmUrR77RAciurL9/uNrp3Glnddpe0WJwDkPi+58gtjRFdQqbV8iOhFdDy29TlurnSkIvkBNji26ytptlBamStdptUi+h/XxHHmvCe0ieoToOi0hl+RT+hKEVhO9RZDZqI4CafuaJHcUSB4AmADY5Jyz6KHhItRuo7cUMhtVhcS6dr7sKI5CQQm0o1uGLJHCSCFYRNfzKFsYlmkkpyASAhHdHCrBImOJ2j62TPTMRYeGi0BEN4DIziJTkfdEkEcayQ9KEGsa373FBRqVIJPGgDHmMMYOGGNcPJeLJOhocD953kM2erMwVyDRnpioq5jtPoJ6JpqkueBKdvxrjDFfLEJuyya/i/WxYbJPB4yxWUbADoGIXjqWWHvBZaR1MtTuUJPwniJ5bbRVB/JMmSnkUXgEUt1LUd+jcNMiGoHuwmLiUfcgOQ4UR3d1I09Fj+7xE4jotZDdw/rcWheBrioqFpYdA7KvID/3b8JuHxb8O4GIXirZlwC2ID9yi0/YmWFbvtAiVENSl0I+G+f+ZWMlWRgpkIZs9NrJ7gPYkRQzCMRi8F6susmtNaFFbIoMri4+mAQjKtSQbGeuYyoUvU1n+P4c6VF4xgsjgYheFuFXMMscY6pJLDv07QLG2BbWTjk3tkAuRUYeAhG9GairJFPNfXVSNJggocEEimQPxc4+L0HeKHY/fry5IysXJe4mjGLjmdVPry7zwraMRPT8j61dkkml9FGiDa3fp8hY6P0YwfeQfxwWLwO1xxhbYp0sM7Qpm+o7JlF/sXTeI8V+QtxhmFVVa64sGckZl/3BKy3JVGM/XQDXoH99d4z1ZR63BpmnBiSfin7qjpGDdempRdnlp8qUkYieTfLKSjLVrLEcwvworicm2KhCmXsGJF9YGJsxSqw1V7aMRPT0VbXqkkx19NNm3bRFhRF1Y52FqeB4pu2ci4bNOSUZyUZPt49k8GHnrntd/exBHoQT4P0TAFlkXk9Mrp0KxJ9qjqfs96EYywDvl7PKW7RGjLGRLedrVTIS0fUnke2STHVAVn99xTnfTfRxKVHzXcaYW4HTqqc5nrKiHDtxrzVjbK4wlnuwd+RaiYykun9wl6ujJFPTFrQQKVeAxUSbKywgVWIpvvtWLM2WFxtPmTy7yaMpxWvJfRt+iSplJKLHdiTUU5Kp6gVNZmbkVaSR9a8qp1woyD3hnK8yzpFlsgRZ2ofo/0phvhRFZTIS0WMroOTvqiWZmg6ZeeFJFrNAspBUcdy2q3BJxCk4Vl4FRK9MRiK6+sCVUpKpgUQ/kGRK6Rf8/4vCV/QD9AuOZxmFLGuTsXSiv3vsZlwZnmkD0a2UZOqA5tJ0qGpNThESqVzxtRDzX5mMpXrdX7tziPNfOduWootHpfRv24muqjVVcdzZq/l95TZKIfrbx2/tQhllQjNBUW8GsEr0d4/djL/e/R08ftt9dffrkzS0mWhDrrlC6mqF/QxbMBahVRv9tTuHeOxbiyaQHABOlqASWi/J1ETVN172yfCZt6GfMhNGxf62EMJamYyFd/SGqukmRK+jJBMUFo/M22aGziDZ8ZjTkRRPQcHxLOoRb5SMxjt65E2ffvPJJtriX733+au66nsdJZlU0LPcXlCkD4yxPcbYYc7TFLNAtliNCo6l1yYZjYjeMDXd1q5eR0kmFU1inNGedrimwMqkvUSbbsYTNuiIUdbPftblHsXr0F6bZNQi+tvHb8WFU+fwS+cnbTgy0yJ6jSWZZKu6m2xTtGcURy6cWZ5kci0yJtZhBZPfCsSCI8u/d5A0f2L9zPu2gW70WpqZVaWM7MVzpy9+9i/PDWVqekO86Tr48/724C7NwVCta2YcppqSSkonJZKnq7JnpGtyFUgbD1NVCY0MOOebiXZKSyWlOJ59AJchj2HQCQEF1ldwV4m23pARTzw+53xWtYxSorfs0suH1O397cF1jYnRwzqVT2l2ZgrRVUiXR3zXhBgmOdck2Eo68eomuvj/xrCbLGLJOZ+ktHOouAB7nPOdqmXc6Iiabkt9L1qSaWVAfA/mwTCTAgvODPaCcCZN9dRbTqHtIzsfvd9kGTfS1PQGe9NLJXqMeCYECgsQb2IwUeZFc6OL5BJFJlgoSN7oXPRidytaMGKJdQKIsAz/RNkybiTV9BZ403Vwl+FHNynJNDH1OMcSCajusAEs5UkXE0ynJFR8Um01neSxfs4BbBpoMb4gT+74ig1i1lQZ2YvnTl+85ZW/Dbt6N31/e1CoFJFuSSYLedqjYzo3pT0fJRaLEN7deAGHXkr7gbABW1sgscwCDsLnEo1fL2VDWMadcVXJyDjnrRice5+/+gWhikfPbYqvfn1/e3Cxwklk1ZlEIFiZl20hegHi/2x/e/BTIjqBiN4B5BD/0v724CQRnUBE7yDixN/fHvyAiE4gohOI6IROg5JDEghEdAKBQEQnEAhkoxMIhGbg/7jMHfcUlqs3AAAAAElFTkSuQmCC" alt="Dan Queirolo"></div></a>
-    <p>Designed at Ambev Tech &middot; case study by Daniel Queirolo &middot; <a href="mailto:danqueirolo@gmail.com">danqueirolo@gmail.com</a></p>
+    <p>Designed at Ambev Tech, built as Embarkei &middot; case study by Daniel Queirolo &middot; <a href="mailto:danqueirolo@gmail.com">danqueirolo@gmail.com</a></p>
   </div>
 </footer>
